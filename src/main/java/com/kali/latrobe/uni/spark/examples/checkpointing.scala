@@ -17,6 +17,8 @@ object checkpointing {
     val conf = new SparkConf().setMaster("local[*]").setAppName("Test_app").set("spark.hadoop.validateOutputSpecs", "false")
     val sc = new SparkContext(conf)
 
+    /*spark streaming usses checkpointing logic ...*/
+
     sc.setCheckpointDir("C:\\Users\\kalit_000\\Desktop\\typesafe\\latrobe_university_spark")
 
     val a = sc.parallelize(1 to 4)
