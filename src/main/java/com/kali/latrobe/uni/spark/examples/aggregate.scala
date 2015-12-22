@@ -26,6 +26,10 @@ object aggregate {
 
     z.mapPartitionsWithIndex(myfunc).collect.foreach(println)
 
+    /*
+    * CERTIFICATION QUESTION:- aggregate function output type can be anything ....
+    * */
+
    // z.zipWithIndex.collect().foreach(println)
 
     //z.zipWithIndex.map(x => x.swap).foreach(println)
