@@ -20,6 +20,8 @@ object coalescerepartition {
 
    /* below y becomes 10 paritions ....*/
 
+   /*certification question:- colleasce helps in repartition without data shuffle  .....*/
+
    val y = sc.parallelize(1 to 10, 10)
 
    /* y paritions are 10 */
