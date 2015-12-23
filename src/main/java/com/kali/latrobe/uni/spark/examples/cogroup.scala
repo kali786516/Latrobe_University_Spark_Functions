@@ -23,6 +23,7 @@ object cogroup {
     val c = a.map((_, "c"))
 
     /*
+    http://blog.cloudera.com/blog/2015/03/how-to-tune-your-apache-spark-jobs-part-1/
     Avoid the flatMap-join-groupBy pattern. When two datasets are already grouped by key and you want to join them and keep them grouped,
     you can just use cogroup. That avoids all the overhead associated with unpacking and repacking the groups.
      */
