@@ -7,9 +7,8 @@ package com.kali.latrobe.uni.spark.examples
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.{SparkContext, SparkConf}
 
-object CollectAsMap {
-
-  def main (args: Array[String]) {
+object CollectAsMap  {
+def main (args: Array[String]) {
 
     Logger.getLogger("org").setLevel(Level.WARN)
     Logger.getLogger("akka").setLevel(Level.WARN)
@@ -19,11 +18,21 @@ object CollectAsMap {
 
     val a = sc.parallelize(List(1, 2, 1, 3), 1)
     val b = a.zip(a)
-    b.collectAsMap
+
+  /* dont use collectAsMap function this runs collect function first which runs on driver
+  *  this function doesnt run in parallel
+  * */
+
+  b.collectAsMap.foreach(println)
+
+  /* alternate solution*/
+
+  println("Alternative solution")
+
+  b.reduceByKey((_, v) => v).foreach(println)
 
 
 
 
   }
-
 }
