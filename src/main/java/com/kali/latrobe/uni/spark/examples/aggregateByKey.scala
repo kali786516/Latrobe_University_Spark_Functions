@@ -30,30 +30,7 @@ object aggregateByKey {
     Avoid reduceByKey When the input and output value types are different. For example, consider writing a transformation that finds all the unique
     strings corresponding to each key. One way would be to use map to transform each element into a Set and then combine the Sets with reduceByKey:
 
-      rdd.map(kv => (kv._1, new Set[String]() + kv._2))
-          .reduceByKey(_ ++ _)
-      1
-      2
-      rdd.map(kv => (kv._1, new Set[String]() + kv._2))
-          .reduceByKey(_ ++ _)
-    This code results in tons of unnecessary object creation because a new set must be allocated for each record. It’s better to use aggregateByKey,
-    which performs the map-side aggregation more efficiently:
-
-
-    val zero = new collection.mutable.Set[String]()
-    rdd.aggregateByKey(zero)(
-        (set, v) => set += v,
-        (set1, set2) => set1 ++= set2)
-    1
-    2
-    3
-    4
-    val zero = new collection.mutable.Set[String]()
-    rdd.aggregateByKey(zero)(
-        (set, v) => set += v,
-        (set1, set2) => set1 ++= set2)
-
-     */
+    */
 
     pairRDD.mapPartitionsWithIndex(myfunc).collect.foreach(println)
 
